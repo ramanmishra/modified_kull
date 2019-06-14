@@ -31,15 +31,15 @@ export default {
     PDF,
     SelectionPreview
   },
-  props: ['src', 'name', 'selections', 'addSelection', 'arrayBuffer', 'setPdfSize'],
+  props: ['src', 'name', 'selections', 'addSelection', 'arrayBuffer', 'setPdfSize', 'x1', 'y1', 'x2', 'y2'],
   data () {
     return {
       down: false,
       coords: {
-        xa: 67,
-        ya: 166,
-        xb: 239,
-        yb: 52
+        xa: this.x1,
+        ya: this.y1,
+        xb: this.x2,
+        yb: this.y2
       },
       pageNumber: 1,
       pageOffset: {

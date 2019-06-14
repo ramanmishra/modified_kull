@@ -1,38 +1,21 @@
 <template>
   <div>
   <div class='editor'>
-    <div class='sidebar'>
-      <Uploader :notify="newFile"></Uploader>
-      <p v-if="name"><strong></strong></p>
-
-      <ZoneViewer :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="src"></ZoneViewer>
-      <PDFZoneViewer :dimensions="pdfDimensions" :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="arrayBuffer"></PDFZoneViewer>
-    </div>
     <div class='content'>
       <Annotator :src="src" :setPdfSize="setPdfSize" :arrayBuffer="arrayBuffer" :name="name" :selections="selections" :addSelection="addSelection" :x1="x1" :y1="y1" :x2="x2" :y2="y2"></Annotator>
     </div>
   </div>
-  <button type='submit' v-on:click="submitForm">submit</button>
   </div>
 </template>
 
 <script>
-import Uploader from '@/components/Uploader'
 import Annotator from '@/components/Annotator'
-import ZoneViewer from '@/components/ZoneViewer'
-import PDFZoneViewer from '@/components/PDFZoneViewer'
 import randomColor from 'randomcolor'
-import axios from 'axios'
-console.log('This.route:', this.$route);
-if(this.$route != undefined)
-  console.log('Editor Params:', this.$route.params);
+
 export default {
-  name: 'editor',
+  name: 'editorWithoutZoneViewer',
   components: {
-    Uploader,
-    Annotator,
-    ZoneViewer,
-    PDFZoneViewer
+    Annotator
   },
   data () {
     return {
