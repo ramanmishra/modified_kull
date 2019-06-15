@@ -5,14 +5,14 @@
       <Uploader :notify="newFile"></Uploader>
       <p v-if="name"><strong></strong></p>
 
-      <ZoneViewer :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="src"></ZoneViewer>
-      <PDFZoneViewer :dimensions="pdfDimensions" :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="arrayBuffer"></PDFZoneViewer>
+      <!-- <ZoneViewer :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="src"></ZoneViewer>
+      <PDFZoneViewer :dimensions="pdfDimensions" :selections="selections" class='zone-viewer' :batchUpdateSelections="batchUpdateSelections" :originalFilename="name" v-if="arrayBuffer"></PDFZoneViewer> -->
     </div>
     <div class='content'>
       <Annotator :src="src" :setPdfSize="setPdfSize" :arrayBuffer="arrayBuffer" :name="name" :selections="selections" :addSelection="addSelection" :x1="x1" :y1="y1" :x2="x2" :y2="y2"></Annotator>
     </div>
   </div>
-  <button type='submit' v-on:click="submitForm">submit</button>
+  <button type='submit' class='submit' v-on:click="submitForm">submit</button>
   </div>
 </template>
 
@@ -101,7 +101,7 @@ export default {
         let y2=y1+sel.coordinates.height;
         let coordinates=[x1,y1,x2,y2];
         let page=sel.coordinates.page;
-        let form_name='Form Type 1';
+        let form_name='type1';
       return {field_name, coordinates, page, form_name};
       });
       data = JSON.stringify(data);
@@ -132,10 +132,19 @@ export default {
 
 .sidebar {
   position: inherit;
-  width: 400px;
+  width: 200px;
   top: 0;
   left: 0;
   padding: 10px;
+}
+
+.submit {
+    position: inherit;
+    width: 200px;
+    top: 0;
+    left: 13px;
+    padding: 10px;
+    margin-left: 10px;
 }
 
 .content {

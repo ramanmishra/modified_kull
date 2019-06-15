@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Editor from '@/components/Editor'
 import EditorWithoutZoneViewer from '@/components/EditorWithoutZoneViewer'
+// import Home from "./Home";
 
 Vue.use(Router)
 
@@ -10,12 +11,17 @@ export default new Router({
   routes: [
     {
       path: '/x1/:x1/y1/:y1/x2/:x2/y2/:y2', 
-      name:"Editor",
-      component: Editor
+      name:"EditorWithoutZoneViewer",
+      component: EditorWithoutZoneViewer
     },
     {
       path: '/',
-      name: 'Editor1',
+      name: 'Editor',
+      component: Editor
+    },
+    {
+      path: '/home',
+      name: 'Home',
       component: Editor
     }
   ]

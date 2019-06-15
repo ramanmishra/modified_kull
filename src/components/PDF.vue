@@ -7,58 +7,58 @@
 </template>
 
 <script>
-var PDFJS = require('pdfjs-dist/webpack.js')
-import pdfViewerPDFJS from '@/../node_modules/pdfjs-dist/web/pdf_viewer.js'
+var PDFJS = require("pdfjs-dist/webpack.js");
+import pdfViewerPDFJS from "@/../node_modules/pdfjs-dist/web/pdf_viewer.js";
 
-PDFJS.PDFViewer = pdfViewerPDFJS.PDFJS.PDFViewer
+PDFJS.PDFViewer = pdfViewerPDFJS.PDFJS.PDFViewer;
 
 export default {
-  props: ['arrayBuffer', 'setPdfSize'],
-  data () {
+  props: ["arrayBuffer", "setPdfSize"],
+  data() {
     return {
       width: null
-    }
+    };
   },
   computed: {
-    styleObject () {
+    styleObject() {
       return {
-        width: this.width ? this.width + 'px' : 'auto'
-      }
+        width: this.width ? this.width + "px" : "auto"
+      };
     }
   },
   watch: {
-    arrayBuffer () {
-      this.loadDocument()
+    arrayBuffer() {
+      this.loadDocument();
     }
   },
   methods: {
-    loadDocument () {
-      console.log('new document')
-      PDFJS.getDocument(this.arrayBuffer).then((pdf) => {
-        pdf.getPage(1).then((page) => {
-          var viewport = page.getViewport(1)
-          this.setPdfSize(viewport.width, viewport.height)
-          this.width = viewport.width
+    loadDocument() {
+      console.log("new document");
+      PDFJS.getDocument(this.arrayBuffer).then(pdf => {
+        pdf.getPage(1).then(page => {
+          var viewport = page.getViewport(1);
+          this.setPdfSize(viewport.width, viewport.height);
+          this.width = viewport.width;
           this.pdfViewer.setDocument(pdf).then(() => {
-            window.scrollTo(0, 0)
-          })
-        })
-      })
+            window.scrollTo(0, 0);
+          });
+        });
+      });
     }
   },
-  mounted () {
-    var container = this.$refs['pdf-container']
+  mounted() {
+    var container = this.$refs["pdf-container"];
 
     this.pdfViewer = new PDFJS.PDFViewer({
       container: container
-    })
+    });
 
-    container.addEventListener('pagesinit', () => {
-      this.pdfViewer.currentScaleValue = 'page-width'
-    })
-    this.loadDocument()
+    container.addEventListener("pagesinit", () => {
+      this.pdfViewer.currentScaleValue = "page-width";
+    });
+    this.loadDocument();
   }
-}
+};
 </script>
 
 <style>
@@ -66,7 +66,8 @@ export default {
   width: auto;
 }
 
-.textLayer, .canvasWrapper {
+.textLayer,
+.canvasWrapper {
   pointer-events: none;
 }
 
@@ -93,7 +94,7 @@ export default {
   bottom: 0;
   overflow: hidden;
   opacity: 0.2;
-  line-height: 1.0;
+  line-height: 1;
 }
 
 .textLayer > div {
@@ -132,8 +133,12 @@ export default {
   background-color: rgb(0, 100, 0);
 }
 
-.textLayer ::selection { background: rgb(0,0,255); }
-.textLayer ::-moz-selection { background: rgb(0,0,255); }
+.textLayer ::selection {
+  background: rgb(0, 0, 255);
+}
+.textLayer ::-moz-selection {
+  background: rgb(0, 0, 255);
+}
 
 .textLayer .endOfContent {
   display: block;
@@ -153,7 +158,6 @@ export default {
   top: 0px;
 }
 
-
 .annotationLayer section {
   position: absolute;
 }
@@ -167,8 +171,9 @@ export default {
   height: 100%;
 }
 
-.annotationLayer .linkAnnotation > a /* -ms-a */  {
-  background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") 0 0 repeat;
+.annotationLayer .linkAnnotation > a /* -ms-a */ {
+  background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
+    0 0 repeat;
 }
 
 .annotationLayer .linkAnnotation > a:hover {
@@ -261,7 +266,7 @@ export default {
   position: absolute;
   z-index: 200;
   max-width: 20em;
-  background-color: #FFFF99;
+  background-color: #ffff99;
   box-shadow: 0px 2px 5px #333;
   border-radius: 2px;
   padding: 0.6em;
@@ -291,18 +296,19 @@ export default {
 
 .pdfViewer .canvasWrapper {
   overflow: hidden;
+  border: solid;
 }
 
 .pdfViewer .page {
   direction: ltr;
   width: 816px;
   height: 1056px;
-/*  margin: 1px auto -8px auto; */
+  /*  margin: 1px auto -8px auto; */
   position: relative;
   overflow: visible;
-/*  border: 9px solid transparent;*/
+  /*  border: 9px solid transparent;*/
   background-clip: content-box;
-/*  border-image: url(images/shadow.png) 9 9 repeat;*/
+  /*  border-image: url(images/shadow.png) 9 9 repeat;*/
   background-color: white;
 }
 
@@ -336,7 +342,7 @@ export default {
   top: 0;
   right: 0;
   bottom: 0;
-/*  background: url('images/loading-icon.gif') center no-repeat;*/
+  /*  background: url('images/loading-icon.gif') center no-repeat;*/
 }
 
 .pdfPresentationMode:-webkit-full-screen .pdfViewer .page {

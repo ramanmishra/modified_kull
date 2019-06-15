@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="dragover" @dragover="dragover" @drop="drop">
-      <p>or <label for="file">click to browse</label></p>
+    <div id="dragover">
+      <p> <label for="file">click to browse</label></p>
       <input type="file" id="file" name="file" @change="selected">
     </div>
   </div>
@@ -25,13 +25,13 @@ export default {
       this.notify({
         name: this.name,
         src: readerData.target.result
-      })
+      },true)
     },
     processReaderPDF: function (readerData) {
       this.notify({
         name: this.name,
         arrayBuffer: readerData.target.result
-      })
+      },true)
     },
     getFile: function (fileList) {
       let file = fileList[0]
@@ -86,8 +86,6 @@ label {
 
 #dragover {
   background: #f1f1f1;
-  border: solid #dedede 3px;
-  padding: 20px 30px;
-  margin-bottom: 30px;
+  border: solid #dedede 1px;
 }
 </style>
